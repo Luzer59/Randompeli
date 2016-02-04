@@ -1,15 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
+public class Raycastpoints
+{
+    public Transform[] bottom;
+}
+
 public class PlayerMovement : MonoBehaviour
 {
     public float accelerationSpeed;
-    public float maxMoveSpeed;
+    public float maxHorizontalSpeed;
     public float horizontalDrag;
+    public float maxVerticalSpeed;
     public float jumpSpeed;
+    public float jumpInputLenght;
+    public float groundDetectionRange;
+    public LayerMask groundLayer = -1;
+    public Raycastpoints raycastpoints;
 
     new private Rigidbody2D rigidbody;
-    private bool isGrounded = false;
+    private enum JumpState { Grounded, Active, Falling }
+    private JumpState jumpState = JumpState.Grounded;
+    private bool canJump = false;
+    private float jumpInputTimer = 0f;
+    private float jumpAcceleration = 0.1f;
 
     void Awake()
     {
@@ -23,28 +38,70 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Vector2 movementVector = rigidbody.velocity;
+
         float inputHorizontal = Input.GetAxis("Horizontal");
-        bool inputUp = Input.GetButtonDown("Jump");
+        bool inputUp = Input.GetButton("Jump");
         bool inputDown = Input.GetButton("Crouch");
 
-        float movementHorizontal = inputHorizontal * accelerationSpeed * Mathf.InverseLerp(0f, maxMoveSpeed, maxMoveSpeed - Mathf.Abs(rigidbody.velocity.x));
+        float movementHorizontal = inputHorizontal * accelerationSpeed * Mathf.InverseLerp(0f, maxHorizontalSpeed, maxHorizontalSpeed - Mathf.Abs(movementVector.x));
 
-        
+        bool isGrounded = false;
+        RaycastHit2D hit;
 
-        float movementVertical = 0f;
-
-        if (inputUp)
+        for (int i = 0; i < raycastpoints.bottom.Length; i++)
         {
-            movementVertical = jumpSpeed;
+            if (hit = Physics2D.Raycast(raycastpoints.bottom[i].position, -transform.up, groundDetectionRange, groundLayer.value))
+            {
+                //Debug.DrawRay(raycastpoints.bottom[i].position, -transform.up * groundDetectionRange, Color.red, Time.deltaTime, false);
+                isGrounded = true;
+            }
         }
 
-        rigidbody.velocity += new Vector2(movementHorizontal, movementVertical);
+        if (isGrounded && jumpState == JumpState.Falling)
+        {
+            jumpState = JumpState.Grounded;
+            Debug.Log("Hit ground");
+        }
+        else if (!isGrounded && jumpState == JumpState.Grounded)
+        {
+            jumpState = JumpState.Falling;
+            Debug.Log("Falling without jumping");
+        }
+        
+        if (inputUp && jumpState == JumpState.Grounded)
+        {
+            movementVector.y = 0f;
+            jumpState = JumpState.Active;
+            Debug.Log("Jump started");
+        }
 
-        movementVertical = 0f;
+        if (jumpState == JumpState.Active)
+        {
+            if (inputUp && jumpInputTimer < jumpInputLenght)
+            {
+                movementVector.y = Mathf.Lerp(jumpSpeed / 2, jumpSpeed, jumpInputTimer / jumpInputLenght);
+                jumpInputTimer += Time.deltaTime;
+                Debug.Log("Jump active " + jumpInputTimer.ToString("0.000"));
+            }
+            else
+            {
+                jumpInputTimer = 0f;
+                jumpState = JumpState.Falling;
+                Debug.Log("Jump ended");
+            }
+        }
+        //print(jumpState);
+
+        movementVector.x += movementHorizontal;
 
         if (inputHorizontal == 0f)
         {
-            rigidbody.velocity = new Vector2(Mathf.Lerp(rigidbody.velocity.x, 0f, horizontalDrag), rigidbody.velocity.y);
+            movementVector.x = Mathf.Lerp(movementVector.x, 0f, horizontalDrag);
         }
+
+        movementVector = new Vector2(Mathf.Clamp(movementVector.x, -maxHorizontalSpeed, maxHorizontalSpeed), Mathf.Clamp(movementVector.y, -maxVerticalSpeed, maxVerticalSpeed));
+
+        rigidbody.velocity = movementVector;
     }
 }
