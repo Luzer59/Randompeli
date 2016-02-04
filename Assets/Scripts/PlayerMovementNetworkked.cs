@@ -1,13 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-[System.Serializable]
-public class Raycastpoints
-{
-    public Transform[] bottom;
-}
-
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementNetworkked : NetworkBehaviour
 {
     public float accelerationSpeed;
     public float maxHorizontalSpeed;
@@ -36,8 +31,20 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    void OnStartLocalPlayer()
+    {
+
+    }
+
     void Update()
     {
+        if (!localPlayerAuthority)
+            return;
+        else
+        {
+            
+        }
+
         Vector2 movementVector = rigidbody.velocity;
 
         float inputHorizontal = Input.GetAxis("Horizontal");
