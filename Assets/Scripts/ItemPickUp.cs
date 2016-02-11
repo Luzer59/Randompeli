@@ -7,7 +7,7 @@ public class ItemPickUp : MonoBehaviour
     public float pickUpDistance = 1f;
     public int pickupLayer;
     public Transform carriedObject = null;
-    PlayerStatuses status;
+   
     
     
     
@@ -15,7 +15,7 @@ public class ItemPickUp : MonoBehaviour
     void Awake()
     {
         pickupLayer = 1 << LayerMask.NameToLayer("Item");
-        status = gameObject.GetComponent<PlayerStatuses>();
+        
         
     }
     
@@ -33,12 +33,9 @@ public class ItemPickUp : MonoBehaviour
     }
    public void Drop()
     {
-        
         carriedObject.parent = null;
         carriedObject.gameObject.AddComponent(typeof(Rigidbody2D));
-        carriedObject = null;
-        status.hasKey = false;
-        
+        carriedObject = null;    
     }
     private void PickUp()
     {
@@ -72,10 +69,7 @@ public class ItemPickUp : MonoBehaviour
             carriedObject.parent = transform;
             carriedObject.localPosition = new Vector3(1f, 0f, 0f);
             
-         /*   if (carriedObject.gameObject.CompareTag("Key"))
-            {
-                status.hasKey = true;
-            }*/
+         
 
         }
         
