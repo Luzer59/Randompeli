@@ -10,11 +10,12 @@ GameObject:
   - 4: {fileID: 441630}
   - 50: {fileID: 5017272}
   - 114: {fileID: 11456136}
-  - 114: {fileID: 11476780}
   - 114: {fileID: 11479104}
-  m_Layer: 0
+  - 114: {fileID: 11476780}
+  - 114: {fileID: 11426018}
+  m_Layer: 10
   m_Name: PlayerOnline
-  m_TagString: Player
+  m_TagString: Team1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +28,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 418898}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BottomRight
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -42,7 +43,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 421606}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Raycastpoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +58,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 474658}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BottomLeft
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
@@ -72,7 +73,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 430288}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,9 +90,9 @@ GameObject:
   - 4: {fileID: 435728}
   - 212: {fileID: 21243876}
   - 61: {fileID: 6187394}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Team1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -202,6 +203,19 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .639999986, y: .639999986}
+--- !u!114 &11426018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1d7b13163de714da494ae4365fb640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolName: PoolManager
+  bulletPool: {fileID: 0}
 --- !u!114 &11456136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -272,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 2
   m_SendInterval: .100000001
-  m_SyncRotationAxis: 3
+  m_SyncRotationAxis: 0
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
   m_MovementTheshold: .00100000005
@@ -315,6 +329,22 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalPlayerAuthority
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SyncSpin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TransformSyncMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Team1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -28,7 +28,7 @@ public class PlayerMovementNetworkked : NetworkBehaviour
 
     void Start()
     {
-
+        
     }
 
     void OnStartLocalPlayer()
@@ -38,12 +38,8 @@ public class PlayerMovementNetworkked : NetworkBehaviour
 
     void Update()
     {
-        if (!localPlayerAuthority)
+        if (!isLocalPlayer)
             return;
-        else
-        {
-            
-        }
 
         Vector2 movementVector = rigidbody.velocity;
 
