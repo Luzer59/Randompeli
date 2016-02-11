@@ -11,15 +11,18 @@ public class GunScript : MonoBehaviour
     public float damage;
     public float timeToFire;
     
-    public LayerMask notToHit;
+    
+    
+   // public LayerMask notToHit;
     Transform firePoint;
 
     void Awake()
     {
-        notToHit = 1 << LayerMask.NameToLayer("Player");
+        //notToHit = 1 << LayerMask.NameToLayer("Player");
         fireRate = 0;
         damage = 10;
         firePoint = transform.FindChild("FirePoint");
+        
         if (firePoint == null)
         {
             Debug.LogError("No firepoint object found");
@@ -34,16 +37,10 @@ public class GunScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z) && hasParent)
             {
                 Shoot();
-            }
-        }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Z) && Time.time > timeToFire && transform.parent != null)
-            {
-                timeToFire = Time.time + 1 / fireRate;
                 
             }
         }
+       
         if (transform.parent != null)
         {
             hasParent = true;
@@ -60,7 +57,8 @@ public class GunScript : MonoBehaviour
         {
             obj.transform.position = firePoint.position;
             obj.SetActive(true);
-            obj.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);   
+            obj.GetComponent<Rigidbody2D>().velocity = new Vector2(-speed, 0);
+            
         }
         else
         {

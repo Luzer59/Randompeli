@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private enum JumpState { Grounded, Active, Falling }
     private JumpState jumpState = JumpState.Grounded;
     private bool canJump = false;
+    private bool facingRight = true;
     private float jumpInputTimer = 0f;
     private float jumpAcceleration = 0.1f;
 
@@ -101,5 +102,20 @@ public class PlayerMovement : MonoBehaviour
         movementVector = new Vector2(Mathf.Clamp(movementVector.x, -maxHorizontalSpeed, maxHorizontalSpeed), Mathf.Clamp(movementVector.y, -maxVerticalSpeed, maxVerticalSpeed));
 
         rigidbody.velocity = movementVector;
+        if (rigidbody.velocity.x > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (rigidbody.velocity.x < 0 && facingRight)
+        {
+            Flip();
+        }
+    }
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
