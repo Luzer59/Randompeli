@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer = -1;
     public Raycastpoints raycastpoints;
 
+    public Animator anim;
+
     new private Rigidbody2D rigidbody;
     private enum JumpState { Grounded, Active, Falling }
     private JumpState jumpState = JumpState.Grounded;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Start()
@@ -46,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         bool inputDown = Input.GetButton("Crouch");
 
         float movementHorizontal = inputHorizontal * accelerationSpeed * Mathf.InverseLerp(0f, maxHorizontalSpeed, maxHorizontalSpeed - Mathf.Abs(movementVector.x));
+
+        anim.SetFloat("speed", Mathf.Abs(inputHorizontal));
 
         bool isGrounded = false;
         RaycastHit2D hit;
@@ -92,6 +97,8 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        
+
         movementVector.x += movementHorizontal;
 
         if (inputHorizontal == 0f)
@@ -102,17 +109,18 @@ public class PlayerMovement : MonoBehaviour
         movementVector = new Vector2(Mathf.Clamp(movementVector.x, -maxHorizontalSpeed, maxHorizontalSpeed), Mathf.Clamp(movementVector.y, -maxVerticalSpeed, maxVerticalSpeed));
 
         rigidbody.velocity = movementVector;
-        if (rigidbody.velocity.x > 0 && !facingRight)
+        if (inputHorizontal > 0 && !facingRight)
         {
             Flip();
         }
-        else if (rigidbody.velocity.x < 0 && facingRight)
+        else if (inputHorizontal < 0 && facingRight)
         {
             Flip();
         }
     }
     void Flip()
     {
+        
         facingRight = !facingRight;
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
