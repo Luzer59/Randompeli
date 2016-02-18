@@ -20,6 +20,7 @@ public class PlayerActionsNetworkked : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             CmdFire();
+            Debug.Log(Vector3.Normalize(transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition)));
         }
     }
     
@@ -30,7 +31,7 @@ public class PlayerActionsNetworkked : NetworkBehaviour
         if (bullet == null)
             return;
 
-        bullet.GetComponent<Rigidbody2D>().velocity = -transform.right * 4;
+        bullet.GetComponent<Rigidbody2D>().velocity = (transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition)).normalized;
 
         // spawn the bullet on the clients
         NetworkServer.Spawn(bullet);
