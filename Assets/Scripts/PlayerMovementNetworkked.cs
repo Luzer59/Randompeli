@@ -10,6 +10,7 @@ public class PlayerMovementNetworkked : NetworkBehaviour
     public float maxVerticalSpeed;
     public float jumpSpeed;
     public float jumpInputLenght;
+    public float gravity;
     public float groundDetectionRange;
     public LayerMask groundLayer = -1;
     public Raycastpoints raycastpoints;
@@ -95,6 +96,8 @@ public class PlayerMovementNetworkked : NetworkBehaviour
         }
 
         movementVector.x += movementHorizontal;
+
+        movementVector.y -= gravity;
 
         if (inputHorizontal == 0f)
         {
