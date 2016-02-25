@@ -62,7 +62,7 @@ GameObject:
   m_Layer: 10
   m_Name: ShootPoint
   m_TagString: Untagged
-  m_Icon: {fileID: -1089502233064743932, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -106,6 +106,7 @@ GameObject:
   - 4: {fileID: 435728}
   - 212: {fileID: 21243876}
   - 61: {fileID: 6187394}
+  - 95: {fileID: 9552674}
   m_Layer: 10
   m_Name: Body
   m_TagString: Team1
@@ -175,7 +176,7 @@ Transform:
   m_GameObject: {fileID: 188174}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 430288}
   m_RootOrder: 0
@@ -260,6 +261,23 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .639999986, y: .639999986}
+--- !u!95 &9552674
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188174}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6df82c0495e7d5c4b91401201c4343ce, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11426018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,6 +293,7 @@ MonoBehaviour:
   bulletPool: {fileID: 0}
   shootPivot: {fileID: 198238}
   shootPoint: {fileID: 162466}
+  health: 10
 --- !u!114 &11430836
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -347,7 +366,8 @@ MonoBehaviour:
     bottom:
     - {fileID: 474658}
     - {fileID: 418898}
-  anim: {fileID: 0}
+  sprites: {fileID: 174482}
+  anim: {fileID: 9552674}
 --- !u!114 &11479104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -392,8 +412,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6abc77ef965e4984ea0dd7a78b9cec21, type: 3}
-  m_Color: {r: 0, g: 1, b: .296551704, a: 1}
+  m_Sprite: {fileID: 21300000, guid: dde51290554fea94dbf5d609f1a3e1b4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -440,6 +460,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_SendInterval
       value: 0.033333335
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: health
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

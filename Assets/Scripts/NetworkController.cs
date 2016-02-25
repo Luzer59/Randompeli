@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Networking;
 
-public class NetworkController : MonoBehaviour
+public class NetworkController : NetworkBehaviour
 {
     private bool serverIsUp = false;
+    public List<GameObject> connectedPlayers = new List<GameObject>();
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !serverIsUp)
+        /*if (Input.GetKeyDown(KeyCode.Space) && !serverIsUp)
         {
             serverIsUp = true;
             StartServer();
-        }
+        }*/
     }
 
     void StartServer()
@@ -25,7 +26,9 @@ public class NetworkController : MonoBehaviour
         {
             Debug.Log("Server failed to start");
         }*/
-        NetworkManager.singleton.StartHost();
-        Debug.Log("asd");
+        //NetworkManager.singleton.conne //StartHost();
+
+        //Debug.Log("asd");
     }
+
 }

@@ -14,6 +14,7 @@ public class PlayerMovementNetworkked : NetworkBehaviour
     public float groundDetectionRange;
     public LayerMask groundLayer = -1;
     public Raycastpoints raycastpoints;
+    public GameObject sprites;
 
     public Animator anim;
     private bool facingRight = true;
@@ -28,8 +29,6 @@ public class PlayerMovementNetworkked : NetworkBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-
     }
 
     void Start()
@@ -120,13 +119,15 @@ public class PlayerMovementNetworkked : NetworkBehaviour
         {
             Flip();
         }
+
+        anim.SetFloat("speed", Mathf.Abs(movementVector.x / maxHorizontalSpeed));
     }
     void Flip()
     {
 
         facingRight = !facingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+        Vector3 newScale = sprites.transform.localScale;
+        newScale.x *= -1f;
+        sprites.transform.localScale = newScale;
     }
 }
