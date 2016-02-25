@@ -15,6 +15,9 @@ public class PlayerMovementNetworkked : NetworkBehaviour
     public LayerMask groundLayer = -1;
     public Raycastpoints raycastpoints;
 
+    public Animator anim;
+    private bool facingRight = true;
+
     new private Rigidbody2D rigidbody;
     private enum JumpState { Grounded, Active, Falling }
     private JumpState jumpState = JumpState.Grounded;
@@ -25,6 +28,8 @@ public class PlayerMovementNetworkked : NetworkBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
     }
 
     void Start()
@@ -107,5 +112,21 @@ public class PlayerMovementNetworkked : NetworkBehaviour
         movementVector = new Vector2(Mathf.Clamp(movementVector.x, -maxHorizontalSpeed, maxHorizontalSpeed), Mathf.Clamp(movementVector.y, -maxVerticalSpeed, maxVerticalSpeed));
 
         rigidbody.velocity = movementVector;
+        if (inputHorizontal > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (inputHorizontal < 0 && facingRight)
+        {
+            Flip();
+        }
+    }
+    void Flip()
+    {
+
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }

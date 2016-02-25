@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 431138}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: -3545028842045912814, guid: 0000000000000000d000000000000000, type: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 61: {fileID: 6155446}
   - 50: {fileID: 5067454}
   - 114: {fileID: 11469364}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: Pistol
   m_TagString: Grabbable
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.27999997, y: -3.25, z: 0}
+  m_LocalPosition: {x: -3.82999992, y: -1.35000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 431138}
@@ -131,10 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d2dd0ea4cc3df44beedc9d11a8757e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasParent: 0
+  speed: 50
   fireRate: 0
   damage: 0
   timeToFire: 0
-  notToHit: {}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

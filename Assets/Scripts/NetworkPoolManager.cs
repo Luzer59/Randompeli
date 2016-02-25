@@ -108,6 +108,7 @@ public class NetworkPoolManager : MonoBehaviour
                 for (int n = currentPoolSize; n < newPoolSize; n++)
                 {
                     var newGo = InstantiatePrefab(Vector3.zero, Quaternion.identity);
+                    newGo.GetComponent<NetworkPooledObjectValues>().pool = this;
                     newGo.SetActive(false);
                     freeObjects.Push(newGo);
 

@@ -225,6 +225,7 @@ MonoBehaviour:
     bottom:
     - {fileID: 485410}
     - {fileID: 449030}
+  anim: {fileID: 0}
 --- !u!212 &21239176
 SpriteRenderer:
   m_ObjectHideFlags: 1

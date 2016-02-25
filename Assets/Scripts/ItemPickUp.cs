@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class ItemPickUp : MonoBehaviour
+public class ItemPickUp : NetworkBehaviour
 {
     
     public float pickUpDistance = 1f;
@@ -21,6 +22,9 @@ public class ItemPickUp : MonoBehaviour
     
     private void Update()
     {
+        if (!isLocalPlayer)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Z) && carriedObject == null)
         {
             PickUp();  
@@ -61,13 +65,13 @@ public class ItemPickUp : MonoBehaviour
         {
             Destroy(carriedObject.GetComponent<Rigidbody2D>());
             
-            if (transform.localScale.x != carriedObject.localScale.x)
+            /*if (transform.localScale.x != carriedObject.localScale.x)
             {
                 carriedObject.localScale = transform.localScale;
-            }
+            }*/
 
-            carriedObject.parent = transform;
-            carriedObject.localPosition = new Vector3(1f, 0f, 0f);
+            carriedObject.parent = GetComponent<PlayerActionsNetworkked>().shootPoint.transform;
+            carriedObject.localPosition = new Vector3(0f, 0f, 0f);
             
          
 

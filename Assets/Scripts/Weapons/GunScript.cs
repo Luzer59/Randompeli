@@ -36,7 +36,7 @@ public class GunScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z) && hasParent)
             {
-                Shoot();
+                //Shoot();
                 
             }
         }

@@ -22,7 +22,19 @@ public class BulletController : NetworkBehaviour
                 {
                     values.pool.ServerReturnToPool(gameObject);
                 }
+                else
+                {
+                    Debug.Log("Tag not different");
+                }
             }
+            else
+            {
+                Debug.Log("NetworkPoolManager not present");
+            }
+        }
+        else
+        {
+            Debug.Log("NetworkPooledObjectValues not present");
         }
     }
 }

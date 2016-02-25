@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11479104}
   - 114: {fileID: 11476780}
   - 114: {fileID: 11426018}
+  - 114: {fileID: 11430836}
   m_Layer: 10
   m_Name: PlayerOnline
   m_TagString: Team1
@@ -47,6 +48,21 @@ GameObject:
   m_Name: Raycastpoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &162466
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 477496}
+  m_Layer: 10
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: -1089502233064743932, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -97,6 +113,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &198238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 488230}
+  m_Layer: 10
+  m_Name: ShootPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &418898
 Transform:
   m_ObjectHideFlags: 1
@@ -104,7 +135,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: -0.31, z: 0}
+  m_LocalPosition: {x: .25, y: -.310000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 421606}
@@ -160,6 +191,7 @@ Transform:
   m_Children:
   - {fileID: 430288}
   - {fileID: 421606}
+  - {fileID: 488230}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &474658
@@ -169,11 +201,36 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: -0.31, z: 0}
+  m_LocalPosition: {x: -.25, y: -.310000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 421606}
   m_RootOrder: 0
+--- !u!4 &477496
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 488230}
+  m_RootOrder: 0
+--- !u!4 &488230
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198238}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 477496}
+  m_Father: {fileID: 441630}
+  m_RootOrder: 2
 --- !u!50 &5017272
 Rigidbody2D:
   serializedVersion: 2
@@ -181,10 +238,9 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119240}
-  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: .0500000007
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -198,13 +254,12 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188174}
   m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: .639999986, y: .639999986}
 --- !u!114 &11426018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,6 +273,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolName: PoolManager
   bulletPool: {fileID: 0}
+  shootPivot: {fileID: 198238}
+  shootPoint: {fileID: 162466}
+--- !u!114 &11430836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ccd0637311037843916323cc9297c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpDistance: 1
+  pickupLayer: 0
+  carriedObject: {fileID: 0}
 --- !u!114 &11456136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -263,12 +334,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accelerationSpeed: 5
   maxHorizontalSpeed: 5
-  horizontalDrag: 0.1
+  horizontalDrag: .100000001
   maxVerticalSpeed: 10
   jumpSpeed: 8
-  jumpInputLenght: 0.2
-  gravity: 0.5
-  groundDetectionRange: 0.08
+  jumpInputLenght: .200000003
+  gravity: .5
+  groundDetectionRange: .0799999982
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -276,6 +347,7 @@ MonoBehaviour:
     bottom:
     - {fileID: 474658}
     - {fileID: 418898}
+  anim: {fileID: 0}
 --- !u!114 &11479104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -288,11 +360,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.033333335
+  m_SendInterval: .0333333351
   m_SyncRotationAxis: 0
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
-  m_MovementTheshold: 0.001
+  m_MovementTheshold: .00100000005
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
@@ -314,18 +386,14 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6abc77ef965e4984ea0dd7a78b9cec21, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.2965517, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
+  m_Color: {r: 0, g: 1, b: .296551704, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
