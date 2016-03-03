@@ -6,10 +6,19 @@ public class BulletController : NetworkBehaviour
 {
     public NetworkPooledObjectValues values;
     public int damage;
+    public Vector2 direction;
+
+    new private Rigidbody2D rigidbody;
 
     void Awake()
     {
         values = GetComponent<NetworkPooledObjectValues>();
+        rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
+    {
+        rigidbody.position += direction * Time.deltaTime;
     }
 
     [ServerCallback]

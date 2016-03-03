@@ -5,7 +5,8 @@ using UnityEngine.Networking;
 public class NetworkController : NetworkBehaviour
 {
     private bool serverIsUp = false;
-    public List<GameObject> connectedPlayers = new List<GameObject>();
+    public List<NetworkPlayer> connectedPlayers = new List<NetworkPlayer>();
+    public int playerCount = 0;
 
     void Update()
     {
@@ -14,6 +15,21 @@ public class NetworkController : NetworkBehaviour
             serverIsUp = true;
             StartServer();
         }*/
+    }
+
+    public void OnServerConnect(NetworkConnection conn)
+    {
+        Debug.Log("Connected");
+    }
+
+    void OnPlayerConnected(NetworkPlayer player)
+    {
+        Debug.Log("Player " + playerCount++ + " connected from " + player.ipAddress + ":" + player.port);
+    }
+
+    void OnPlayerDisconnected(NetworkPlayer player)
+    {
+        Debug.Log("Player " + " disconnected from " + player.ipAddress + ":" + player.port);
     }
 
     void StartServer()

@@ -9,6 +9,7 @@ public class PlayerActionsNetworkked : NetworkBehaviour
     public GameObject shootPivot;
     public GameObject shootPoint;
 
+    public float bulletSpeed;
     public int health;
 
     void Start()
@@ -16,7 +17,7 @@ public class PlayerActionsNetworkked : NetworkBehaviour
         bulletPool = NetworkPoolManager.GetPoolByName(poolName);
     }
 
-    void OnStartLocalPlayer()
+    public override void OnStartLocalPlayer()
     {
         //tag = "Team" + Network.connections.Length + 2;
     }
@@ -47,11 +48,11 @@ public class PlayerActionsNetworkked : NetworkBehaviour
         if (bullet == null)
             return;
         bullet.tag = tag;
-        bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * 10f;
+        //bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * 10f;
 
         // spawn the bullet on the clients
+        bullet.GetComponent<BulletController>().direction = bullet.transform.right * bulletSpeed;
         NetworkServer.Spawn(bullet);
-        bullet.tag = gameObject.tag;
     }
 
     [Command]

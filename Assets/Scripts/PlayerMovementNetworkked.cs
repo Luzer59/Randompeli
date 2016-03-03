@@ -18,6 +18,8 @@ public class PlayerMovementNetworkked : NetworkBehaviour
 
     public Animator anim;
     private bool facingRight = true;
+    [SyncVar]
+    private int direction = 1;
 
     new private Rigidbody2D rigidbody;
     private enum JumpState { Grounded, Active, Falling }
@@ -36,12 +38,24 @@ public class PlayerMovementNetworkked : NetworkBehaviour
         
     }
 
-    void OnStartLocalPlayer()
+    public override void OnStartLocalPlayer()
     {
 
     }
 
-    void Update()
+    void FlipNetworked()
+    {
+        if (direction == 1 && !facingRight)
+        {
+            Flip();
+        }
+        else if (direction == -1 && facingRight)
+        {
+            Flip();
+        }
+    }
+
+    void LocalMovement()
     {
         if (!isLocalPlayer)
             return;
@@ -75,7 +89,7 @@ public class PlayerMovementNetworkked : NetworkBehaviour
             jumpState = JumpState.Falling;
             Debug.Log("Falling without jumping");
         }
-        
+
         if (inputUp && jumpState == JumpState.Grounded)
         {
             movementVector.y = 0f;
@@ -111,20 +125,27 @@ public class PlayerMovementNetworkked : NetworkBehaviour
         movementVector = new Vector2(Mathf.Clamp(movementVector.x, -maxHorizontalSpeed, maxHorizontalSpeed), Mathf.Clamp(movementVector.y, -maxVerticalSpeed, maxVerticalSpeed));
 
         rigidbody.velocity = movementVector;
-        if (inputHorizontal > 0 && !facingRight)
+        if (inputHorizontal > 0 && !facingRight) // turn right
         {
+            direction = 1;
             Flip();
         }
-        else if (inputHorizontal < 0 && facingRight)
+        else if (inputHorizontal < 0 && facingRight) // turn left
         {
+            direction = -1;
             Flip();
         }
 
-        anim.SetFloat("speed", Mathf.Abs(movementVector.x / maxHorizontalSpeed));
+        anim.SetFloat("speed", Mathf.Abs(Input.GetAxis("Horizontal")));
+    }
+
+    void Update()
+    {
+        LocalMovement();
+        FlipNetworked();
     }
     void Flip()
     {
-
         facingRight = !facingRight;
         Vector3 newScale = sprites.transform.localScale;
         newScale.x *= -1f;
