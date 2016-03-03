@@ -107,6 +107,8 @@ GameObject:
   - 212: {fileID: 21243876}
   - 61: {fileID: 6187394}
   - 95: {fileID: 9552674}
+  - 114: {fileID: 11443442}
+  - 114: {fileID: 11490546}
   m_Layer: 10
   m_Name: Body
   m_TagString: Team1
@@ -136,7 +138,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .25, y: -.310000002, z: 0}
+  m_LocalPosition: {x: 0.25, y: -0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 421606}
@@ -202,7 +204,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.25, y: -.310000002, z: 0}
+  m_LocalPosition: {x: -0.25, y: -0.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 421606}
@@ -214,7 +216,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 162466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .5, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 488230}
@@ -239,9 +241,10 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119240}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -255,12 +258,13 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 188174}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: .639999986, y: .639999986}
+  m_Size: {x: 0.64, y: 0.64}
 --- !u!95 &9552674
 Animator:
   serializedVersion: 3
@@ -293,6 +297,7 @@ MonoBehaviour:
   bulletPool: {fileID: 0}
   shootPivot: {fileID: 198238}
   shootPoint: {fileID: 162466}
+  bulletSpeed: 1
   health: 10
 --- !u!114 &11430836
 MonoBehaviour:
@@ -308,6 +313,25 @@ MonoBehaviour:
   pickUpDistance: 1
   pickupLayer: 0
   carriedObject: {fileID: 0}
+--- !u!114 &11443442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 9552674}
+  m_ParameterSendBits: 1
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!114 &11456136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -353,12 +377,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   accelerationSpeed: 5
   maxHorizontalSpeed: 5
-  horizontalDrag: .100000001
+  horizontalDrag: 0.1
   maxVerticalSpeed: 10
   jumpSpeed: 8
-  jumpInputLenght: .200000003
-  gravity: .5
-  groundDetectionRange: .0799999982
+  jumpInputLenght: 0.2
+  gravity: 0.5
+  groundDetectionRange: 0.08
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -380,14 +404,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: .0333333351
+  m_SendInterval: 0.033333335
   m_SyncRotationAxis: 0
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
-  m_MovementTheshold: .00100000005
+  m_MovementTheshold: 0.001
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &11490546
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 75
+    i1: 241
+    i2: 42
+    i3: 146
+    i4: 167
+    i5: 188
+    i6: 173
+    i7: 228
+    i8: 187
+    i9: 60
+    i10: 98
+    i11: 125
+    i12: 241
+    i13: 164
+    i14: 139
+    i15: 124
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!212 &21243876
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -406,14 +462,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: dde51290554fea94dbf5d609f1a3e1b4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ef65bd5c7638be42b49e223b45d10d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -464,6 +524,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: health
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: bulletSpeed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

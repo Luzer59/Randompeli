@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: dde51290554fea94dbf5d609f1a3e1b4
-timeCreated: 1456402820
+guid: 42d8b41818aad824d8f131e137f32703
+timeCreated: 1457005675
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Idle_Sheet_0
-    21300002: Idle_Sheet_1
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -19,20 +17,20 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
   cubemapConvolution: 0
-  cubemapConvolutionSteps: 8
+  cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -3
+  textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: 16
+    aniso: -1
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -40,38 +38,19 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites:
-    - name: Idle_Sheet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Idle_Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+    sprites: []
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
