@@ -240,7 +240,7 @@ MonoBehaviour:
   bulletPool: {fileID: 0}
   shootPivot: {fileID: 198238}
   shootPoint: {fileID: 162466}
-  bulletSpeed: 1
+  bulletSpeed: 15
   health: 10
 --- !u!114 &11430836
 MonoBehaviour:
@@ -438,7 +438,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: bulletSpeed
-      value: 1
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
