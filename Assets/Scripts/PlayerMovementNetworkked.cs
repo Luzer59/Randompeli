@@ -22,6 +22,7 @@ public class PlayerMovementNetworkked : NetworkBehaviour
     private int direction = 1;
 
     new private Rigidbody2D rigidbody;
+    private SpriteRenderer sprRend;
     private enum JumpState { Grounded, Active, Falling }
     private JumpState jumpState = JumpState.Grounded;
     private bool canJump = false;
@@ -31,11 +32,12 @@ public class PlayerMovementNetworkked : NetworkBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        sprRend = GetComponent<SpriteRenderer>();
     }
 
     void Start()
     {
-        
+
     }
 
     public override void OnStartLocalPlayer()
@@ -147,8 +149,9 @@ public class PlayerMovementNetworkked : NetworkBehaviour
     void Flip()
     {
         facingRight = !facingRight;
-        Vector3 newScale = sprites.transform.localScale;
+        /*Vector3 newScale = sprites.transform.localScale;
         newScale.x *= -1f;
-        sprites.transform.localScale = newScale;
+        sprites.transform.localScale = newScale;*/
+        sprRend.flipX = !sprRend.flipX;
     }
 }
