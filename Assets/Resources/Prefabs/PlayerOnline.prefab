@@ -107,6 +107,7 @@ GameObject:
   - 212: {fileID: 21243876}
   - 61: {fileID: 6187394}
   - 95: {fileID: 9552674}
+  - 58: {fileID: 5813646}
   m_Layer: 10
   m_Name: Body
   m_TagString: Team1
@@ -136,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .25, y: -.310000002, z: 0}
+  m_LocalPosition: {x: .057, y: -.310000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 421606}
@@ -187,7 +188,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.25691402, y: -.289058805, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 430288}
@@ -202,7 +203,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.25, y: -.310000002, z: 0}
+  m_LocalPosition: {x: -.0489999987, y: -.310000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 421606}
@@ -246,8 +247,21 @@ Rigidbody2D:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!58 &5813646
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188174}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: -.209999993}
+  serializedVersion: 2
+  m_Radius: .115384281
 --- !u!61 &6187394
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -258,9 +272,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -.0130209923, y: .0297622085}
   serializedVersion: 2
-  m_Size: {x: .639999986, y: .639999986}
+  m_Size: {x: .1898458, y: .424223423}
 --- !u!95 &9552674
 Animator:
   serializedVersion: 3
@@ -352,7 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   accelerationSpeed: 5
-  maxHorizontalSpeed: 5
+  maxHorizontalSpeed: 4
   horizontalDrag: .100000001
   maxVerticalSpeed: 10
   jumpSpeed: 8
@@ -464,6 +478,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: health
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHorizontalSpeed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

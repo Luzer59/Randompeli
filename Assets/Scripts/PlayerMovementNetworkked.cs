@@ -120,7 +120,7 @@ public class PlayerMovementNetworkked : NetworkBehaviour
             Flip();
         }
 
-        anim.SetFloat("speed", Mathf.Abs(movementVector.x / maxHorizontalSpeed));
+        anim.SetFloat("speed", Mathf.Abs(Input.GetAxis("Horizontal")));
     }
     void Flip()
     {
